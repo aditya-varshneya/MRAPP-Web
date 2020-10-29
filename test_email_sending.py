@@ -8,7 +8,7 @@ web_usr = app_config.web_app_confg['login_usr']
 web_pass = app_config.web_app_confg['login_pass']
 
 
-def test_sms_sent_to_doctor_mr_web_app():
+def test_email_sent_to_doctor_mr_web_app():
     try:
         driver = webdriver.Chrome("C:\\Users\\AMIT\\PycharmProjects\\MRwebApp\\chromedriverexe\\chromedriver.exe")
         driver.implicitly_wait(50)
