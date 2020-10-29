@@ -82,6 +82,7 @@ def test_create_todo_drname_mr_web_app():
         # clicking pending btn
         driver.find_element_by_xpath(
             '/html/body/app-root/ion-app/ion-split-pane/ion-router-outlet/ng-component/ion-tabs/div/ion-router-outlet/app-to-do/ion-header/ion-segment/ion-segment-button[2]').click()
+        time.sleep(5)
         # getting final pending todos created values
         # dr name selected
         final_drname_ele = driver.find_element_by_xpath(
@@ -92,7 +93,7 @@ def test_create_todo_drname_mr_web_app():
         final_detail_ele = driver.find_element_by_xpath(
             '/html/body/app-root/ion-app/ion-split-pane/ion-router-outlet/ng-component/ion-tabs/div/ion-router-outlet/app-to-do/ion-content/div/div/ion-list/ion-item/ion-label/ion-label[2]/small')
         final_detail = final_drname_ele.text
-        # final time of created todos as ==  08:10 PM
+        # final time of created todos as ==  08:original_time,10 PM
         global final_time_ele
         final_time_ele = driver.find_element_by_xpath(
             '/html/body/app-root/ion-app/ion-split-pane/ion-router-outlet/ng-component/ion-tabs/div/ion-router-outlet/app-to-do/ion-content/div/div/ion-list/ion-item/ion-label/ion-label[3]/ion-button[2]').text
@@ -101,9 +102,8 @@ def test_create_todo_drname_mr_web_app():
 
         driver.quit()
     except:
-        raise Exception
-    finally:
         driver.quit()
+
 
 try:
     def test_pending_todo_list_time_match():

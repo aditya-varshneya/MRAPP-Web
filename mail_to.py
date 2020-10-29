@@ -11,7 +11,7 @@ contacts = app_config.email_config["contacts"]
 # mrAppVersion = app_config.appium_config["app_cred"]["AppVersion"]
 
 msg = EmailMessage()
-msg['Subject'] = f'WEB APP :: MR Web App Automation Testing Report'
+msg['Subject'] = f'[WEB MR APP] :: MR Web App Automation Testing Report'
 msg['From'] = EMAIL_ADDRESS
 msg['To'] = contacts
 msg.set_content('''Hello,
@@ -24,9 +24,9 @@ html_files = os.listdir("Reports\HTML")
 
 html_files = [os.path.join("Reports\HTML", file) for file in html_files]
 print(html_files)
-pdfkit.from_file(html_files,"Reports\\PDF\\WEB_MR_APP_Automation_Testing_Report.pdf")
+pdfkit.from_file(html_files,"Reports\\PDF\\[WEB MR APP]_Automation_Testing_Report.pdf")
 
-with open('Reports\\PDF\\WEB_MR_APP_Automation_Testing_Report.pdf', 'rb') as f:
+with open('Reports\\PDF\\[WEB MR APP]_Automation_Testing_Report.pdf', 'rb') as f:
     file_data = f.read()
     file_name = f.name.split('\\')[2]
 #

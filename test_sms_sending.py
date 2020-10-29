@@ -40,7 +40,7 @@ def test_sms_sent_to_doctor_mr_web_app():
         driver.find_element_by_xpath('//*[@id="main-content"]/ng-component/ion-tabs/div/ion-router-outlet/app-doctor-profile/ion-content/ion-card/ion-row/ion-col[4]').click()
         time.sleep(2)
         # clicking the 2nd sms product for sms template
-        driver.find_element_by_xpath('/html/body/app-root/ion-app/ion-split-pane/ion-router-outlet/ng-component/ion-tabs/div/ion-router-outlet/app-product-list/ion-content/div/div/ion-list/ion-item[4]/ion-label/ion-label').click()
+        driver.find_element_by_xpath('/html/body/app-root/ion-app/ion-split-pane/ion-router-outlet/ng-component/ion-tabs/div/ion-router-outlet/app-product-list/ion-content/div/div/ion-list/ion-item[3]/ion-label/ion-label').click()
         time.sleep(2)
         # clicking the template inside the product
         driver.find_element_by_xpath('//*[@id="main-content"]/ng-component/ion-tabs/div/ion-router-outlet/app-templates/ion-content/div/div/ion-list/ion-item/ion-label').click()
