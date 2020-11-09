@@ -7,6 +7,7 @@ web_pass = app_config.web_app_confg['login_pass']
 
 
 def test_create_todo_drname_mr_web_app():
+    global driver
     try:
         driver = webdriver.Chrome("C:\\Users\\AMIT\\PycharmProjects\\MRwebApp\\chromedriverexe\\chromedriver.exe")
         driver.implicitly_wait(50)
@@ -99,8 +100,6 @@ def test_create_todo_drname_mr_web_app():
             '/html/body/app-root/ion-app/ion-split-pane/ion-router-outlet/ng-component/ion-tabs/div/ion-router-outlet/app-to-do/ion-content/div/div/ion-list/ion-item/ion-label/ion-label[3]/ion-button[2]').text
         print('111111111111111111111', original_drname, final_drname)
         assert original_drname.lower() == final_drname.lower(), 'Todo Dr names did not match'
-
-        driver.quit()
     except:
         driver.quit()
 

@@ -9,6 +9,7 @@ web_pass = app_config.web_app_confg['login_pass']
 
 
 def test_product_list_mr_web_app():
+    global driver
     try:
         driver = webdriver.Chrome("C:\\Users\\AMIT\\PycharmProjects\\MRwebApp\\chromedriverexe\\chromedriver.exe")
         driver.implicitly_wait(50)
@@ -42,13 +43,23 @@ def test_product_list_mr_web_app():
             '/html/body/app-root/ion-app/ion-split-pane/ion-router-outlet/ng-component/ion-tabs/div/ion-router-outlet/app-add-todo/ion-content/ion-item[2]/ion-select').click()
         time.sleep(15)
         products_list = []
-        for i in range(1, 5):
-            prod_xpath_ele = f'/html/body/app-root/ion-app/ion-alert/div/div[3]/button[{i}]'
-            # clicking product list dropdown
-            product_name = driver.find_element_by_xpath(prod_xpath_ele).text
-            products_list.append(product_name)
+
+        # for i in range(0, 1):
+        #     # prod_xpath_ele = f'/html/body/app-root/ion-app/ion-alert/div/div[3]/button[{i}]'
+        #     prod_xpath_ele = f'//*[@id="alert-input-27-0"]/div/div[2]'
+        #     # clicking product list dropdown
+        #     product_name = driver.find_element_by_xpath(prod_xpath_ele).text
+        #     products_list.append(product_name)
+        # print(products_list)
+
+        # prod_xpath_ele = f'/html/body/app-root/ion-app/ion-alert/div/div[3]/button[{i}]'
+        prod_xpath_ele = f'/html/body/app-root/ion-app/ion-alert/div/div[3]/button/div/div[2]'
+        # clicking product list dropdown
+        product_name = driver.find_element_by_xpath(prod_xpath_ele).text
+        products_list.append(product_name)
         print(products_list)
-        assert len(products_list) > 2, 'Product list are not present'
+        assert len(products_list) > 0, 'Product list are not present'
+        assert products_list[0] == 'DUMMY 3'
     except NoSuchElementException:
         raise Exception
     finally:

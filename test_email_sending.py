@@ -1,6 +1,4 @@
 import time
-
-import pytest
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 
@@ -10,7 +8,8 @@ web_usr = app_config.web_app_confg['login_usr']
 web_pass = app_config.web_app_confg['login_pass']
 
 
-def test_email_sent_to_doctor_mr_web_app(count=0):
+def test_sms_sent_to_doctor_mr_web_app():
+    global driver
     try:
         driver = webdriver.Chrome("C:\\Users\\AMIT\\PycharmProjects\\MRwebApp\\chromedriverexe\\chromedriver.exe")
         driver.implicitly_wait(50)
@@ -45,7 +44,7 @@ def test_email_sent_to_doctor_mr_web_app(count=0):
         time.sleep(2)
         # clicking the 2nd email product for email template
         driver.find_element_by_xpath(
-            '/html/body/app-root/ion-app/ion-split-pane/ion-router-outlet/ng-component/ion-tabs/div/ion-router-outlet/app-product-list/ion-content/div/div/ion-list/ion-item[5]/ion-label/ion-label').click()
+            '//*[@id="main-content"]/ng-component/ion-tabs/div/ion-router-outlet/app-product-list/ion-content/div/div/ion-list').click()
         time.sleep(2)
         # clicking the template of the product
         # getting email header text
@@ -77,6 +76,8 @@ def test_email_sent_to_doctor_mr_web_app(count=0):
         driver.find_element_by_xpath(
             '/html/body/app-root/ion-app/ion-split-pane/ion-router-outlet/ng-component/ion-tabs/div/ion-router-outlet/app-doctor-profile/ion-content/ion-row[2]/ion-col/ion-button').click()
         time.sleep(5)
+        # get templatename
+        sent_email_name = driver.find_element_by_xpath('//*[@id="main-content"]/ng-component/ion-tabs/div/ion-router-outlet/app-view-history/ion-content/ion-list/ion-item[1]/ion-label/ion-label[2]/span').text
         # getting first ement properties for assert
         # first date time as == '02:27 PM, 28 Sep 2020'
         first_entry_date_time = driver.find_element_by_xpath(
@@ -88,12 +89,9 @@ def test_email_sent_to_doctor_mr_web_app(count=0):
             '/html/body/app-root/ion-app/ion-split-pane/ion-router-outlet/ng-component/ion-tabs/div/ion-router-outlet/app-view-history/ion-content/ion-list/ion-item[1]/ion-label/ion-label[2]/span').text
         assert first_entry_date_time != second_entry_date_time, 'Time of two entry is same'
         print('Date time entry campaire::', first_entry_date_time, second_entry_date_time)
-        driver.quit()
+        assert sent_email_name == 'MR APP DUMMY EMAIL TEMPLATE'
     except:
-        count+=1
-        while count > 2:
-            pytest.skip("Error in running automation test server..Check and Try Again")
-        test_email_sent_to_doctor_mr_web_app(count=count)
+        raise Exception
     finally:
         driver.quit()
 

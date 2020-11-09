@@ -9,6 +9,7 @@ web_pass = app_config.web_app_confg['login_pass']
 
 
 def test_sms_sent_to_doctor_mr_web_app():
+    global driver
     try:
         driver = webdriver.Chrome("C:\\Users\\AMIT\\PycharmProjects\\MRwebApp\\chromedriverexe\\chromedriver.exe")
         driver.implicitly_wait(50)
@@ -130,7 +131,7 @@ def test_sms_sent_to_doctor_mr_web_app():
             '/html/body/app-root/ion-app/ion-split-pane/ion-router-outlet/ng-component/ion-tabs/div/ion-router-outlet/app-doctor-profile/ion-content/ion-row[1]/ion-col[2]/ion-chip[4]/ion-label').text
 
         assert dr_name_start == dr_name_updated, 'Dr profile name not updated'
-        driver.quit()
+
     except:
         raise Exception
     finally:
