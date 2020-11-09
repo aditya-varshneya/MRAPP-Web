@@ -101,6 +101,8 @@ def test_create_todo_drname_mr_web_app():
         print('111111111111111111111', original_drname, final_drname)
         assert original_drname.lower() == final_drname.lower(), 'Todo Dr names did not match'
     except:
+        raise Exception
+    finally:
         driver.quit()
 
 
