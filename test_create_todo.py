@@ -41,7 +41,7 @@ def test_create_todo_drname_mr_web_app():
         # search for A DOCTOR
         search_drname = driver.find_element_by_xpath(
             '/html/body/app-root/ion-app/ion-modal[2]/div/ionic-selectable-modal/ion-header/ion-toolbar[2]/ion-searchbar/div/input')
-        search_drname.send_keys('vikas')
+        search_drname.send_keys('rakesh')
         time.sleep(5)
 
         # selecting search output of dr name
