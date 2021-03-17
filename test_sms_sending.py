@@ -9,9 +9,9 @@ web_pass = app_config.web_app_confg['login_pass']
 
 
 def test_sms_sent_to_doctor_mr_web_app():
+    global driver
     try:
-        global driver
-        driver = webdriver.Chrome("C:\\Users\\AMIT\\PycharmProjects\\MRwebApp\\chromedriverexe\\chromedriver.exe")
+        driver = webdriver.Chrome("C:\webdrivers\chromedriver.exe")
         driver.implicitly_wait(50)
         test_url = app_config.web_app_confg['web_url']
         driver.get(test_url)
@@ -36,18 +36,24 @@ def test_sms_sent_to_doctor_mr_web_app():
         time.sleep(5)
         # clicking 2nd dr name lable
         driver.find_element_by_xpath(
-            '/html/body/app-root/ion-app/ion-split-pane/ion-router-outlet/ng-component/ion-tabs/div/ion-router-outlet/app-connect/ion-content/ion-list/ion-item[1]/a').click()
+            '/html/body/app-root/ion-app/ion-split-pane/ion-router-outlet/ng-component/ion-tabs/div/ion-router-outlet/app-connect/ion-content/ion-list/ion-item[2]/a').click()
         time.sleep(5)
         # clicking sms icon of dr profile
         driver.find_element_by_xpath(
             '//*[@id="main-content"]/ng-component/ion-tabs/div/ion-router-outlet/app-doctor-profile/ion-content/ion-card/ion-row/ion-col[4]').click()
-        time.sleep(2)
-        # clicking the 2nd sms product for sms template
-        driver.find_element_by_xpath(
-            '//*[@id="main-content"]/ng-component/ion-tabs/div/ion-router-outlet/app-product-list/ion-content/div/div/ion-list/ion-item[3]/ion-label/ion-label').click()
+        time.sleep(3)
 
-        # driver.find_element_by_xpath('//*[@id="main-content"]/ng-component/ion-tabs/div/ion-router-outlet/app-product-list/ion-content/div/div/ion-list').click()
+
+        # clicking the 4th sms product for sms template
+        driver.find_element_by_xpath(
+            '//*[@id="main-content"]/ng-component/ion-tabs/div/ion-router-outlet/app-product-list/ion-content/div/div/ion-list/ion-item[4]/ion-label/ion-label').click()
         time.sleep(2)
+
+        # getting the sms preview text for sending
+        sms_text_send_sms = driver.find_element_by_xpath(
+            '//*[@id="main-content"]/ng-component/ion-tabs/div/ion-router-outlet/app-templates/ion-content/div/div/ion-list/ion-item/ion-label/ion-label[2]/small').text
+
+
         # clicking the template inside the product
         driver.find_element_by_xpath(
             '//*[@id="main-content"]/ng-component/ion-tabs/div/ion-router-outlet/app-templates/ion-content/div/div/ion-list/ion-item/ion-label').click()
@@ -68,15 +74,16 @@ def test_sms_sent_to_doctor_mr_web_app():
         # again clicking the dr name to view history
         # clicking 2nd dr name lable
         driver.find_element_by_xpath(
-            '/html/body/app-root/ion-app/ion-split-pane/ion-router-outlet/ng-component/ion-tabs/div/ion-router-outlet/app-connect/ion-content/ion-list/ion-item[1]/a').click()
+            '/html/body/app-root/ion-app/ion-split-pane/ion-router-outlet/ng-component/ion-tabs/div/ion-router-outlet/app-connect/ion-content/ion-list/ion-item[2]/a').click()
         time.sleep(5)
         # clicking view history button
         driver.find_element_by_xpath(
             '/html/body/app-root/ion-app/ion-split-pane/ion-router-outlet/ng-component/ion-tabs/div/ion-router-outlet/app-doctor-profile/ion-content/ion-row[2]/ion-col/ion-button').click()
         time.sleep(5)
-        # getting text from sent sms entry in view history
-        sms_entry_text = driver.find_element_by_xpath(
+        # GEtting sms text
+        sms_text_view_history = driver.find_element_by_xpath(
             '//*[@id="main-content"]/ng-component/ion-tabs/div/ion-router-outlet/app-view-history/ion-content/ion-list/ion-item[1]/ion-label/ion-label[2]/span').text
+
         # getting first ement properties for assert
         # first date time as == '02:27 PM, 28 Sep 2020'
         first_entry_date_time = driver.find_element_by_xpath(
@@ -84,8 +91,8 @@ def test_sms_sent_to_doctor_mr_web_app():
         second_entry_date_time = driver.find_element_by_xpath(
             '//*[@id="main-content"]/ng-component/ion-tabs/div/ion-router-outlet/app-view-history/ion-content/ion-list/ion-item[2]/ion-label/ion-label[1]').text
         assert first_entry_date_time != second_entry_date_time, 'Time of two entry is same'
+        assert sms_text_view_history[0:25] in sms_text_send_sms[0:25], 'SMS text is not matching'
         print('Date time entry campaire::', first_entry_date_time, second_entry_date_time)
-        assert 'Dear Doctor, You have been a bigger part' in sms_entry_text, 'text not found in the entry'
         driver.quit()
     except NoSuchElementException:
         raise NoSuchElementException
