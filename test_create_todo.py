@@ -100,15 +100,16 @@ def test_create_todo_drname_mr_web_app():
             '/html/body/app-root/ion-app/ion-split-pane/ion-router-outlet/ng-component/ion-tabs/div/ion-router-outlet/app-to-do/ion-content/div/div/ion-list/ion-item/ion-label/ion-label[3]/ion-button[2]').text
         print('111111111111111111111', original_drname, final_drname)
         assert original_drname.lower() == final_drname.lower(), 'Todo Dr names did not match'
+        assert original_time == final_time_ele, 'Created pending todo time did not match'
     except:
         raise Exception
     finally:
         driver.quit()
 
 
-try:
-    def test_pending_todo_list_time_match():
-        print('222222222222222222222', original_time, final_time_ele)
-        assert original_time == final_time_ele, 'Created pending todo time did not match'
-except NameError:
-    raise NameError
+# try:
+#     def test_pending_todo_list_time_match():
+#         print('222222222222222222222', original_time, final_time_ele)
+#         assert original_time == final_time_ele, 'Created pending todo time did not match'
+# except NameError:
+#     raise NameError

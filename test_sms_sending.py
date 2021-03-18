@@ -1,16 +1,22 @@
+
+import app_config
 import time
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 
-import app_config
+
 
 web_usr = app_config.web_app_confg['login_usr']
 web_pass = app_config.web_app_confg['login_pass']
 
 
+
+
 def test_sms_sent_to_doctor_mr_web_app():
+    global driver
     try:
-        global driver
+
+
         driver = webdriver.Chrome("C:\\Users\\AMIT\\PycharmProjects\\MRwebApp\\chromedriverexe\\chromedriver.exe")
         driver.implicitly_wait(50)
         test_url = app_config.web_app_confg['web_url']
@@ -44,8 +50,10 @@ def test_sms_sent_to_doctor_mr_web_app():
         time.sleep(2)
         # clicking the 2nd sms product for sms template
         driver.find_element_by_xpath(
-            '//*[@id="main-content"]/ng-component/ion-tabs/div/ion-router-outlet/app-product-list/ion-content/div/div/ion-list/ion-item[3]/ion-label/ion-label').click()
+            '//*[@id="main-content"]/ng-component/ion-tabs/div/ion-router-outlet/app-product-list/ion-content/div/div/ion-list/ion-item[1]/ion-label/ion-label').click()
 
+        # getting product text for campaire
+        sms_template_text = driver.find_element_by_xpath('//*[@id="main-content"]/ng-component/ion-tabs/div/ion-router-outlet/app-templates/ion-content/div/div/ion-list/ion-item/ion-label/ion-label[2]/small').text
         # driver.find_element_by_xpath('//*[@id="main-content"]/ng-component/ion-tabs/div/ion-router-outlet/app-product-list/ion-content/div/div/ion-list').click()
         time.sleep(2)
         # clicking the template inside the product
@@ -85,8 +93,9 @@ def test_sms_sent_to_doctor_mr_web_app():
             '//*[@id="main-content"]/ng-component/ion-tabs/div/ion-router-outlet/app-view-history/ion-content/ion-list/ion-item[2]/ion-label/ion-label[1]').text
         assert first_entry_date_time != second_entry_date_time, 'Time of two entry is same'
         print('Date time entry campaire::', first_entry_date_time, second_entry_date_time)
-        assert 'Dear Doctor, You have been a bigger part' in sms_entry_text, 'text not found in the entry'
-        driver.quit()
+        assert sms_template_text[0:25] in sms_entry_text[0:25], 'Both text, before sms and after sms, does not match'
+        print('Before sms and After sms::', sms_template_text[0:25], sms_entry_text[0:25])
+
     except NoSuchElementException:
         raise NoSuchElementException
     except:
