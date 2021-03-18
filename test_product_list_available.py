@@ -11,7 +11,7 @@ web_pass = app_config.web_app_confg['login_pass']
 def test_product_list_mr_web_app():
     global driver
     try:
-        driver = webdriver.Chrome("C:\\Users\\AMIT\\PycharmProjects\\MRwebApp\\chromedriverexe\\chromedriver.exe")
+        driver = webdriver.Chrome("C:\webdrivers\chromedriver.exe")
         driver.implicitly_wait(50)
         test_url = app_config.web_app_confg['web_url']
         driver.get(test_url)
@@ -59,7 +59,7 @@ def test_product_list_mr_web_app():
         products_list.append(product_name)
         print(products_list)
         assert len(products_list) > 0, 'Product list are not present'
-        assert products_list[0] == 'DUMMY 3'
+        assert products_list[0] == 'ASTHALIN'
     except NoSuchElementException:
         raise Exception
     finally:

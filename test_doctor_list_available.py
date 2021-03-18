@@ -9,8 +9,8 @@ web_pass = app_config.web_app_confg['login_pass']
 def test_doctor_list_mr_web_app():
     global driver
     try:
-        driver = webdriver.Chrome("C:\\Users\\AMIT\\PycharmProjects\\MRwebApp\\chromedriverexe\\chromedriver.exe")
-        driver.implicitly_wait(50)
+        driver = webdriver.Chrome("C:\webdrivers\chromedriver.exe")
+        driver.implicitly_wait(30)
         test_url = app_config.web_app_confg['web_url']
         driver.get(test_url)
         driver.maximize_window()
