@@ -8,7 +8,7 @@ web_usr = app_config.web_app_confg['login_usr']
 web_pass = app_config.web_app_confg['login_pass']
 
 
-def test_sms_sent_to_doctor_mr_web_app():
+def test_email_sent_to_doctor_mr_web_app():
     global driver
     try:
         driver = webdriver.Chrome("C:\webdrivers\chromedriver.exe")
@@ -36,23 +36,25 @@ def test_sms_sent_to_doctor_mr_web_app():
         time.sleep(5)
         # clicking 2nd dr name lable
         driver.find_element_by_xpath(
-            '/html/body/app-root/ion-app/ion-split-pane/ion-router-outlet/ng-component/ion-tabs/div/ion-router-outlet/app-connect/ion-content/ion-list/ion-item[2]/a').click()
+            '//*[@id="main-content"]/ng-component/ion-tabs/div/ion-router-outlet/app-connect/ion-content/ion-list/ion-item[1]/a').click()
         time.sleep(5)
         # clicking email icon of dr profile
         driver.find_element_by_xpath(
             '//*[@id="main-content"]/ng-component/ion-tabs/div/ion-router-outlet/app-doctor-profile/ion-content/ion-card/ion-row/ion-col[5]').click()
         time.sleep(2)
         # clicking the 2nd email product for email template
-        driver.find_element_by_xpath('/html/body/app-root/ion-app/ion-split-pane/ion-router-outlet/ng-component/ion-tabs/div/ion-router-outlet/app-product-list/ion-content/div/div/ion-list/ion-item[3]/ion-label/ion-label').click()
-
         driver.find_element_by_xpath(
-            '//*[@id="main-content"]/ng-component/ion-tabs/div/ion-router-outlet/app-product-list/ion-content/div/div/ion-list').click()
+            '/html/body/app-root/ion-app/ion-split-pane/ion-router-outlet/ng-component/ion-tabs/div/ion-router-outlet/app-product-list/ion-content/div/div/ion-list/ion-item[3]/ion-label/ion-label').click()
+
+        #
+        # driver.find_element_by_xpath(
+        #     '//*[@id="main-content"]/ng-component/ion-tabs/div/ion-router-outlet/app-product-list/ion-content/div/div/ion-list').click()
         time.sleep(2)
         # clicking the template of the product
         # getting email header text
         global email_header_text_prev
         email_header_text_prev = driver.find_element_by_xpath(
-            '/html/body/app-root/ion-app/ion-split-pane/ion-router-outlet/ng-component/ion-tabs/div/ion-router-outlet/app-templates/ion-content/div/div/ion-list/ion-item/ion-label/ion-label').text
+            '//*[@id="main-content"]/ng-component/ion-tabs/div/ion-router-outlet/app-templates/ion-content/div/div/ion-list/ion-item[1]/ion-label/ion-label').text
         driver.find_element_by_xpath(
             '//*[@id="main-content"]/ng-component/ion-tabs/div/ion-router-outlet/app-templates/ion-content/div/div/ion-list/ion-item').click()
         time.sleep(5)
@@ -70,37 +72,26 @@ def test_sms_sent_to_doctor_mr_web_app():
         # clicking the okay button to confirm sending the sms
         driver.find_element_by_xpath('/html/body/app-root/ion-app/ion-alert/div/div[3]/button/span').click()
         # again clicking the dr name to view history
+        time.sleep(5)
         # clicking 2nd dr name lable
         driver.find_element_by_xpath(
-            '/html/body/app-root/ion-app/ion-split-pane/ion-router-outlet/ng-component/ion-tabs/div/ion-router-outlet/app-connect/ion-content/ion-list/ion-item[2]/a').click()
+            '/html/body/app-root/ion-app/ion-split-pane/ion-router-outlet/ng-component/ion-tabs/div/ion-router-outlet/app-connect/ion-content/ion-list/ion-item[1]/a').click()
         time.sleep(5)
         # clicking view history button
         driver.find_element_by_xpath(
             '/html/body/app-root/ion-app/ion-split-pane/ion-router-outlet/ng-component/ion-tabs/div/ion-router-outlet/app-doctor-profile/ion-content/ion-row[2]/ion-col/ion-button').click()
-        time.sleep(5)
+        time.sleep(7)
         # get templatename
-        sent_email_name = driver.find_element_by_xpath('//*[@id="main-content"]/ng-component/ion-tabs/div/ion-router-outlet/app-view-history/ion-content/ion-list/ion-item[1]/ion-label/ion-label[2]/span').text
-        # getting first ement properties for assert
-        # first date time as == '02:27 PM, 28 Sep 2020'
-        first_entry_date_time = driver.find_element_by_xpath(
-            '//*[@id="main-content"]/ng-component/ion-tabs/div/ion-router-outlet/app-view-history/ion-content/ion-list/ion-item[1]/ion-label/ion-label[1]').text
-        second_entry_date_time = driver.find_element_by_xpath(
-            '//*[@id="main-content"]/ng-component/ion-tabs/div/ion-router-outlet/app-view-history/ion-content/ion-list/ion-item[2]/ion-label/ion-label[1]').text
+        sent_email_name = driver.find_element_by_xpath(
+            '//*[@id="main-content"]/ng-component/ion-tabs/div/ion-router-outlet/app-view-history/ion-content/ion-list/ion-item[1]/ion-label/ion-label[2]/span').text
+
         global mail_title_text
         mail_title_text = driver.find_element_by_xpath(
             '/html/body/app-root/ion-app/ion-split-pane/ion-router-outlet/ng-component/ion-tabs/div/ion-router-outlet/app-view-history/ion-content/ion-list/ion-item[1]/ion-label/ion-label[2]/span').text
-        assert first_entry_date_time != second_entry_date_time, 'Time of two entry is same'
-        print('Date time entry campaire::', first_entry_date_time, second_entry_date_time)
-        assert sent_email_name == 'Automation Template'
+        assert sent_email_name == email_header_text_prev
+        print('Mail template name::', sent_email_name, email_header_text_prev)
     except:
         raise Exception
     finally:
         driver.quit()
 
-
-# try:
-#     def test_email_name_check():
-#         print('Test mail name entry campaire::', email_header_text_prev, mail_title_text)
-#         assert email_header_text_prev == mail_title_text, 'Test mail name did not match'
-# except NameError:
-#     raise NameError
