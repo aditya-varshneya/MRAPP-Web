@@ -86,13 +86,13 @@ def test_sms_sent_to_doctor_mr_web_app():
         sms_entry_text = driver.find_element_by_xpath(
             '//*[@id="main-content"]/ng-component/ion-tabs/div/ion-router-outlet/app-view-history/ion-content/ion-list/ion-item[1]/ion-label/ion-label[2]/span').text
         # getting first ement properties for assert
-        # first date time as == '02:27 PM, 28 Sep 2020'
-        first_entry_date_time = driver.find_element_by_xpath(
-            '//*[@id="main-content"]/ng-component/ion-tabs/div/ion-router-outlet/app-view-history/ion-content/ion-list/ion-item[1]/ion-label/ion-label[1]').text
-        second_entry_date_time = driver.find_element_by_xpath(
-            '//*[@id="main-content"]/ng-component/ion-tabs/div/ion-router-outlet/app-view-history/ion-content/ion-list/ion-item[2]/ion-label/ion-label[1]').text
-        assert first_entry_date_time != second_entry_date_time, 'Time of two entry is same'
-        print('Date time entry campaire::', first_entry_date_time, second_entry_date_time)
+        # # # first date time as == '02:27 PM, 28 Sep 2020'
+        # # first_entry_date_time = driver.find_element_by_xpath(
+        # #     '//*[@id="main-content"]/ng-component/ion-tabs/div/ion-router-outlet/app-view-history/ion-content/ion-list/ion-item[1]/ion-label/ion-label[1]').text
+        # # second_entry_date_time = driver.find_element_by_xpath(
+        # #     '//*[@id="main-content"]/ng-component/ion-tabs/div/ion-router-outlet/app-view-history/ion-content/ion-list/ion-item[2]/ion-label/ion-label[1]').text
+        # # assert first_entry_date_time != second_entry_date_time, 'Time of two entry is same'
+        # print('Date time entry campaire::', first_entry_date_time, second_entry_date_time)
         assert sms_template_text[0:25] in sms_entry_text[0:25], 'Both text, before sms and after sms, does not match'
         print('Before sms and After sms::', sms_template_text[0:25], sms_entry_text[0:25])
 

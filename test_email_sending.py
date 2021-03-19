@@ -83,18 +83,10 @@ def test_email_sent_to_doctor_mr_web_app():
         # get templatename
         sent_email_name = driver.find_element_by_xpath(
             '//*[@id="main-content"]/ng-component/ion-tabs/div/ion-router-outlet/app-view-history/ion-content/ion-list/ion-item[1]/ion-label/ion-label[2]/span').text
-        # getting first ement properties for assert
-        # first date time as == '02:27 PM, 28 Sep 2020'
-        first_entry_date_time = driver.find_element_by_xpath(
-            '//*[@id="main-content"]/ng-component/ion-tabs/div/ion-router-outlet/app-view-history/ion-content/ion-list/ion-item[1]/ion-label/ion-label[1]').text
-        second_entry_date_time = driver.find_element_by_xpath(
-            '//*[@id="main-content"]/ng-component/ion-tabs/div/ion-router-outlet/app-view-history/ion-content/ion-list/ion-item[2]/ion-label/ion-label[1]').text
+
         global mail_title_text
         mail_title_text = driver.find_element_by_xpath(
             '/html/body/app-root/ion-app/ion-split-pane/ion-router-outlet/ng-component/ion-tabs/div/ion-router-outlet/app-view-history/ion-content/ion-list/ion-item[1]/ion-label/ion-label[2]/span').text
-        assert first_entry_date_time != second_entry_date_time, 'Time of two entry is same'
-        print('Date time entry campaire::', first_entry_date_time, second_entry_date_time)
-        # assert sent_email_name == 'MR APP DUMMY EMAIL TEMPLATE'
         assert sent_email_name == email_header_text_prev
         print('Mail template name::', sent_email_name, email_header_text_prev)
     except:
@@ -102,9 +94,3 @@ def test_email_sent_to_doctor_mr_web_app():
     finally:
         driver.quit()
 
-# try:
-#     def test_email_name_check():
-#         print('Test mail name entry campaire::', email_header_text_prev, mail_title_text)
-#         assert email_header_text_prev == mail_title_text, 'Test mail name did not match'
-# except NameError:
-#     raise NameError
