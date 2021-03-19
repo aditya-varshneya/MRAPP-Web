@@ -1,17 +1,15 @@
 import time
-
-import pytest
 from selenium import webdriver
 import app_config
 
 web_usr = app_config.web_app_confg['login_usr']
 web_pass = app_config.web_app_confg['login_pass']
 
-@pytest.mark.flaky(rerun=1)
+
 def test_create_todo_drname_mr_web_app():
     global driver
     try:
-        driver = webdriver.Chrome("C:\webdrivers\chromedriver.exe")
+        driver = webdriver.Chrome("C:\\Users\\AMIT\\PycharmProjects\\MRwebApp\\chromedriverexe\\chromedriver.exe")
         driver.implicitly_wait(50)
         test_url = app_config.web_app_confg['web_url']
         driver.get(test_url)
@@ -53,7 +51,7 @@ def test_create_todo_drname_mr_web_app():
         # getting dr name from search result
         original_drname = driver.find_element_by_xpath(
             '/html/body/app-root/ion-app/ion-split-pane/ion-router-outlet/ng-component/ion-tabs/div/ion-router-outlet/app-add-todo/ion-content/ion-item[1]/ionic-selectable/div/div[1]/span/div').text
-        time.sleep(5)
+        time.sleep(10)
         # clicking product list dropdown
         driver.find_element_by_xpath(
             '/html/body/app-root/ion-app/ion-split-pane/ion-router-outlet/ng-component/ion-tabs/div/ion-router-outlet/app-add-todo/ion-content/ion-item[2]/ion-select').click()
@@ -72,13 +70,13 @@ def test_create_todo_drname_mr_web_app():
         detail_box = driver.find_element_by_xpath(
             '//*[@id="main-content"]/ng-component/ion-tabs/div/ion-router-outlet/app-add-todo/ion-content/ion-item[3]/ion-input/input')
         detail_box.send_keys("Details of product goes here")
-        time.sleep(3)
+        time.sleep(5)
         # getting original time as == 08:21 PM
         global original_time
         original_time = driver.find_element_by_xpath(
             '//*[@id="main-content"]/ng-component/ion-tabs/div/ion-router-outlet/app-add-todo/ion-content/'
             'ion-row/ion-col[2]/ion-item/ion-datetime').text
-        time.sleep(3)
+        time.sleep(5)
         # clicking save btn
         driver.find_element_by_xpath(
             '/html/body/app-root/ion-app/ion-split-pane/ion-router-outlet/ng-component/ion-tabs/div/ion-router-outlet/app-add-todo/ion-header/ion-toolbar/ion-buttons[2]/ion-button').click()
