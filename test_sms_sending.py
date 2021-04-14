@@ -8,7 +8,7 @@ from selenium.common.exceptions import NoSuchElementException
 
 web_usr = app_config.web_app_confg['login_usr']
 web_pass = app_config.web_app_confg['login_pass']
-
+chromeexe_path = app_config.web_app_confg['chromedriverexe_path']
 
 
 
@@ -16,8 +16,7 @@ def test_sms_sent_to_doctor_mr_web_app():
     global driver
     try:
 
-
-        driver = webdriver.Chrome("C:\\Users\\AMIT\\PycharmProjects\\MRwebApp\\chromedriverexe\\chromedriver.exe")
+        driver = webdriver.Chrome(chromeexe_path)
         driver.implicitly_wait(50)
         test_url = app_config.web_app_confg['web_url']
         driver.get(test_url)

@@ -60,7 +60,7 @@ def test_product_list_mr_web_app():
         products_list.append(product_name)
         print(products_list)
         assert len(products_list) > 0, 'Product list are not present'
-        assert products_list[0] == 'ASTHALIN'
+        assert products_list[0] == 'CSID'
     except NoSuchElementException:
         raise Exception
     finally:
