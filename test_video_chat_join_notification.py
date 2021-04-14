@@ -6,11 +6,12 @@ import app_config
 
 web_usr = app_config.web_app_confg['login_usr']
 web_pass = app_config.web_app_confg['login_pass']
+chromeexe_path = app_config.web_app_confg['chromedriverexe_path']
 
 
 def test_video_chat_sms_notification_entry_on_history_mr_web_app():
     try:
-        driver = webdriver.Chrome("C:\\Users\\AMIT\\PycharmProjects\\MRwebApp\\chromedriverexe\\chromedriver.exe")
+        driver = webdriver.Chrome(chromeexe_path)
         driver.implicitly_wait(50)
         test_url = app_config.web_app_confg['web_url']
         driver.get(test_url)

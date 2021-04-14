@@ -1,17 +1,21 @@
 import time
 from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.firefox import GeckoDriverManager
 import app_config
 
 # from selenium.common.exceptions import NoSuchElementException
 
 web_usr = app_config.web_app_confg['login_usr']
 web_pass = app_config.web_app_confg['login_pass']
+chromeexe_path = app_config.web_app_confg['chromedriverexe_path']
 
 
 def test_login_to_mr_web_app():
+    global driver
     try:
-        global driver
-        driver = webdriver.Chrome("C:\webdrivers\chromedriver.exe")
+
+        driver = webdriver.Chrome(chromeexe_path)
         driver.implicitly_wait(30)
         test_url = app_config.web_app_confg['web_url']
         driver.get(test_url)

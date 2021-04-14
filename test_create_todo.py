@@ -4,12 +4,13 @@ import app_config
 
 web_usr = app_config.web_app_confg['login_usr']
 web_pass = app_config.web_app_confg['login_pass']
+chromeexe_path = app_config.web_app_confg['chromedriverexe_path']
 
 
 def test_create_todo_drname_mr_web_app():
     global driver
     try:
-        driver = webdriver.Chrome("C:\\Users\\AMIT\\PycharmProjects\\MRwebApp\\chromedriverexe\\chromedriver.exe")
+        driver = webdriver.Chrome(chromeexe_path)
         driver.implicitly_wait(50)
         test_url = app_config.web_app_confg['web_url']
         driver.get(test_url)
@@ -105,11 +106,3 @@ def test_create_todo_drname_mr_web_app():
         raise Exception
     finally:
         driver.quit()
-
-
-# try:
-#     def test_pending_todo_list_time_match():
-#         print('222222222222222222222', original_time, final_time_ele)
-#         assert original_time == final_time_ele, 'Created pending todo time did not match'
-# except NameError:
-#     raise NameError

@@ -11,7 +11,7 @@ web_pass = app_config.web_app_confg['login_pass']
 def test_email_sent_to_doctor_mr_web_app():
     global driver
     try:
-        driver = webdriver.Chrome("C:\webdrivers\chromedriver.exe")
+        driver = webdriver.Chrome("C:\\Users\\AMIT\\PycharmProjects\\MRwebApp\\chromedriverexe\\chromedriver.exe")
         driver.implicitly_wait(50)
         test_url = app_config.web_app_confg['web_url']
         driver.get(test_url)
@@ -72,7 +72,6 @@ def test_email_sent_to_doctor_mr_web_app():
         # clicking the okay button to confirm sending the sms
         driver.find_element_by_xpath('/html/body/app-root/ion-app/ion-alert/div/div[3]/button/span').click()
         # again clicking the dr name to view history
-        time.sleep(5)
         # clicking 2nd dr name lable
         driver.find_element_by_xpath(
             '/html/body/app-root/ion-app/ion-split-pane/ion-router-outlet/ng-component/ion-tabs/div/ion-router-outlet/app-connect/ion-content/ion-list/ion-item[1]/a').click()
@@ -80,7 +79,7 @@ def test_email_sent_to_doctor_mr_web_app():
         # clicking view history button
         driver.find_element_by_xpath(
             '/html/body/app-root/ion-app/ion-split-pane/ion-router-outlet/ng-component/ion-tabs/div/ion-router-outlet/app-doctor-profile/ion-content/ion-row[2]/ion-col/ion-button').click()
-        time.sleep(7)
+        time.sleep(5)
         # get templatename
         sent_email_name = driver.find_element_by_xpath(
             '//*[@id="main-content"]/ng-component/ion-tabs/div/ion-router-outlet/app-view-history/ion-content/ion-list/ion-item[1]/ion-label/ion-label[2]/span').text

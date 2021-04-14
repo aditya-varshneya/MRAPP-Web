@@ -3,8 +3,9 @@ import os
 web_app_confg = {
     "web_url":"http://base-mr-app.s3-website.ap-south-1.amazonaws.com/login",
     "login_usr":"9643357782",
-    "login_pass":"Cipl@123"
-    # "login_pass":"Thbm@123"
+    # "login_pass":"Cipl@123"
+    "login_pass":"Thbm@123",
+    "chromedriverexe_path":"C:\\workspace\\git_proj\\MRAPP-Web\\MRAPP-Web\\chromedriverexe\\chromedriver.exe"
 }
 
 
