@@ -44,6 +44,10 @@ def test_email_sent_to_doctor_mr_web_app():
         time.sleep(2)
         # clicking the 2nd email product for email template
         driver.find_element_by_xpath(
+<<<<<<< Updated upstream
+=======
+            '/html/body/app-root/ion-app/ion-split-pane/ion-router-outlet/ng-component/ion-tabs/div/ion-router-outlet/app-product-list/ion-content/div/div/ion-list/ion-item[3]/ion-label/ion-label').click()
+>>>>>>> Stashed changes
             '//*[@id="main-content"]/ng-component/ion-tabs/div/ion-router-outlet/app-product-list/ion-content/div/div/ion-list/ion-item[1]/ion-label/ion-label').click()
 
         #
