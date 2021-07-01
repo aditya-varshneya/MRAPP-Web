@@ -1,17 +1,16 @@
+import pytest
 
 import app_config
 import time
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 
-
-
 web_usr = app_config.web_app_confg['login_usr']
 web_pass = app_config.web_app_confg['login_pass']
 chromeexe_path = app_config.web_app_confg['chromedriverexe_path']
 
 
-
+@pytest.mark.flaky(rerun=1)
 def test_sms_sent_to_doctor_mr_web_app():
     global driver
     try:
@@ -52,7 +51,8 @@ def test_sms_sent_to_doctor_mr_web_app():
             '//*[@id="main-content"]/ng-component/ion-tabs/div/ion-router-outlet/app-product-list/ion-content/div/div/ion-list/ion-item[1]/ion-label/ion-label').click()
 
         # getting product text for campaire
-        sms_template_text = driver.find_element_by_xpath('//*[@id="main-content"]/ng-component/ion-tabs/div/ion-router-outlet/app-templates/ion-content/div/div/ion-list/ion-item/ion-label/ion-label[2]/small').text
+        sms_template_text = driver.find_element_by_xpath(
+            '//*[@id="main-content"]/ng-component/ion-tabs/div/ion-router-outlet/app-templates/ion-content/div/div/ion-list/ion-item/ion-label/ion-label[2]/small').text
         # driver.find_element_by_xpath('//*[@id="main-content"]/ng-component/ion-tabs/div/ion-router-outlet/app-product-list/ion-content/div/div/ion-list').click()
         time.sleep(2)
         # clicking the template inside the product

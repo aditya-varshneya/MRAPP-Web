@@ -1,3 +1,4 @@
+import pytest
 import time
 from selenium import webdriver
 import app_config
@@ -7,6 +8,7 @@ web_pass = app_config.web_app_confg['login_pass']
 chromeexe_path = app_config.web_app_confg['chromedriverexe_path']
 
 
+@pytest.mark.flaky(rerun=1)
 def test_create_todo_drname_mr_web_app():
     global driver
     try:

@@ -1,17 +1,20 @@
+import pytest
 import time
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 
 import app_config
+from test_create_todo import chromeexe_path
 
 web_usr = app_config.web_app_confg['login_usr']
 web_pass = app_config.web_app_confg['login_pass']
 
 
+@pytest.mark.flaky(rerun=1)
 def test_email_sent_to_doctor_mr_web_app():
     global driver
     try:
-        driver = webdriver.Chrome("C:\\Users\\AMIT\\PycharmProjects\\MRwebApp\\chromedriverexe\\chromedriver.exe")
+        driver = webdriver.Chrome(chromeexe_path)
         driver.implicitly_wait(50)
         test_url = app_config.web_app_confg['web_url']
         driver.get(test_url)
@@ -93,4 +96,3 @@ def test_email_sent_to_doctor_mr_web_app():
         raise Exception
     finally:
         driver.quit()
-
