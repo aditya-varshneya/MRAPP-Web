@@ -1,16 +1,13 @@
-import pytest
 import time
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 
 import app_config
-from test_create_todo import chromeexe_path
 
 web_usr = app_config.web_app_confg['login_usr']
 web_pass = app_config.web_app_confg['login_pass']
+chromeexe_path = app_config.web_app_confg['chromedriverexe_path']
 
-
-@pytest.mark.flaky(rerun=1)
 def test_email_sent_to_doctor_mr_web_app():
     global driver
     try:
@@ -47,10 +44,6 @@ def test_email_sent_to_doctor_mr_web_app():
         time.sleep(2)
         # clicking the 2nd email product for email template
         driver.find_element_by_xpath(
-<<<<<<< Updated upstream
-=======
-            '/html/body/app-root/ion-app/ion-split-pane/ion-router-outlet/ng-component/ion-tabs/div/ion-router-outlet/app-product-list/ion-content/div/div/ion-list/ion-item[3]/ion-label/ion-label').click()
->>>>>>> Stashed changes
             '//*[@id="main-content"]/ng-component/ion-tabs/div/ion-router-outlet/app-product-list/ion-content/div/div/ion-list/ion-item[1]/ion-label/ion-label').click()
 
         #
@@ -86,12 +79,11 @@ def test_email_sent_to_doctor_mr_web_app():
         # clicking view history button
         driver.find_element_by_xpath(
             '/html/body/app-root/ion-app/ion-split-pane/ion-router-outlet/ng-component/ion-tabs/div/ion-router-outlet/app-doctor-profile/ion-content/ion-row[2]/ion-col/ion-button').click()
-        time.sleep(5)
+        time.sleep(7)
         # get templatename
         sent_email_name = driver.find_element_by_xpath(
             '//*[@id="main-content"]/ng-component/ion-tabs/div/ion-router-outlet/app-view-history/ion-content/ion-list/ion-item[1]/ion-label/ion-label[2]/span').text
 
-        global mail_title_text
         mail_title_text = driver.find_element_by_xpath(
             '/html/body/app-root/ion-app/ion-split-pane/ion-router-outlet/ng-component/ion-tabs/div/ion-router-outlet/app-view-history/ion-content/ion-list/ion-item[1]/ion-label/ion-label[2]/span').text
         assert sent_email_name == email_header_text_prev
