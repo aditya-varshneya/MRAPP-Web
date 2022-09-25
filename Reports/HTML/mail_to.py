@@ -1,4 +1,3 @@
-import base64
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
@@ -8,7 +7,7 @@ import os
 import pdfkit
 import time
 from PyPDF2 import PdfFileMerger
-
+import win32com.client as win32
 
 
 if os.path.exists("Automation_Report.pdf"):
@@ -41,7 +40,7 @@ email_user = 'adityakumar@thb.co.in'
 email_send = "satyendra@thb.co.in,nitin@thb.co.in,rajesh@thb.co.in," \
              "rakesh@thb.co.in,amitkumar@thb.co.in,vikassingh@thb.co.in"
 email_copy = 'adityakumar@thb.co.in'
-password = base64.b64decode("YWRpdHlhMDYxMjg3").decode("utf-8")
+password = 'aditya061287'
 
 
 #outlook = win32.Dispatch('outlook.application')
@@ -58,7 +57,7 @@ message.attach(MIMEText(body, 'plain'))
 filename = "Automation_Report.pdf"
 
 files = [filename]
-dir_path = "C:/Automation/MRAPP-Web/Reports/HTML"
+dir_path = "C:/Users/Lenovo/Documents/GitHub/MRAPP-Web/Reports/HTML"
 for f in files:
     file_path = os.path.join(dir_path, f)
     attachment = open(file_path, "rb")
